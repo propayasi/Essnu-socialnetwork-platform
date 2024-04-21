@@ -42,7 +42,8 @@ Welcome coders! This is a basic social networking site built using React.js, Jav
    ```
    This will open the development server on your localhost.
 
-##citations
+## Citations
+
 I would like to thank lama dev for the inspiration of the frontend
 
 ## Usage
