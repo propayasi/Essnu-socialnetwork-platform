@@ -5,7 +5,7 @@ Welcome coders! This is a basic social networking site built using React.js, Jav
 ## Installation and Setup
 
 ### Prerequisites
-- Node.js and npm installed on your machine
+- React.js and npm installed on your machine
 - MySQL Workbench (version 8.0ce) and MySQL Server (version 8.0) installed
 
 ### Steps
@@ -41,6 +41,9 @@ Welcome coders! This is a basic social networking site built using React.js, Jav
    yarn start
    ```
    This will open the development server on your localhost.
+
+##citations
+I would like to thank lama dev for the inspiration of the frontend
 
 ## Usage
 
