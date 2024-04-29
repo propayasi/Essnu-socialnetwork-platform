@@ -1,0 +1,50 @@
+DEPENDENCIES:-
+mysql2 : "^3.9.7"
+MySQL server 8.0
+MySQL WORKBENCH 8.0 CE
+
+THEORY:-
+schema, tables, attributes such as primary key, foreign key, unique, not null'
+cascading rollback, union and join.
+
+SQL commands:-
+
+AUTH PAGE
+1)   SELECT * FROM users WHERE username = ?
+2)   INSERT INTO users (`username`,`email`,`password`,`name`) VALUE (?)
+
+
+COMMENTS PAGE
+1)   `SELECT c.*, u.id AS userId, name, profilePic FROM comments AS c JOIN users AS u ON (u.id = c.userId)
+    WHERE c.postId = ? ORDER BY c.createdAt DESC `;
+2)   INSERT INTO comments(`desc`, `createdAt`, `userId`, `postId`) VALUES (?)
+3)   DELETE FROM comments WHERE `id` = ? AND `userId` = ?
+
+LIKE PAGE
+1)   SELECT userId FROM likes WHERE postId = ?
+2)   INSERT INTO likes (`userId`,`postId`) VALUES (?)
+3)   DELETE FROM likes WHERE `userId` = ? AND `postId` = ?
+
+POSTS PAGE
+1)   ? `SELECT p.*, u.id AS userId, name, profilePic FROM posts AS p JOIN users AS u ON (u.id = p.userId) WHERE p.userId = ? ORDER BY 	p.createdAt DESC`
+        : `SELECT p.*, u.id AS userId, name, profilePic FROM posts AS p JOIN users AS u ON (u.id = p.userId)
+    LEFT JOIN relationships AS r ON (p.userId = r.followedUserId) WHERE r.followerUserId= ? OR p.userId =?
+    ORDER BY p.createdAt DESC`;
+
+2)   INSERT INTO posts(`desc`, `img`, `createdAt`, `userId`) VALUES (?)
+3)   DELETE FROM posts WHERE `id`=? AND `userId` = ?
+
+RELATIONSHIP PAGE
+1)   SELECT followerUserId FROM relationships WHERE followedUserId = ?
+2)   INSERT INTO relationships (`followerUserId`,`followedUserId`) VALUES (?)
+3)   DELETE FROM relationships WHERE `followerUserId` = ? AND `followedUserId` = ?
+
+STORY PAGE 
+1)   SELECT s.*, name FROM stories AS s JOIN users AS u ON (u.id = s.userId)
+    LEFT JOIN relationships AS r ON (s.userId = r.followedUserId AND r.followerUserId= ?) LIMIT 4`;
+2)   INSERT INTO stories(`img`, `createdAt`, `userId`) VALUES (?)
+3)   DELETE FROM stories WHERE `id`=? AND `userId` = ?
+
+USER PAGE
+1) SELECT * FROM users WHERE id=?
+2) UPDATE users SET `name`=?,`city`=?,`website`=?,`profilePic`=?,`coverPic`=? WHERE id=?
